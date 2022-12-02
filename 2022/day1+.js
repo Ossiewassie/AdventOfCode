@@ -27,8 +27,13 @@ myInterface.on('line', function (line) {
 
 //fires upon closing the interface
 myInterface.on('close', function() {
-    var max = Math.max(...elves);
-    var index = elves.indexOf(max);
-                                //the +1 is because arrays start at 0
-    console.log("elf nr " + (index + 1) + " has the most calories on him, " + max + " of them to be exact!");
+    var topThree = 0;
+
+    for (let i = 0; i < 3; i++) {
+        var max = Math.max(...elves); 
+        topThree += max;
+        elves.splice(elves.indexOf(max), 1);
+        console.log(i);
+    }
+    console.log("Total of top three elves is " + topThree);
 });
