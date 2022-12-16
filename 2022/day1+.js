@@ -1,6 +1,5 @@
 const fs = require('fs');
 const readline = require('readline');
-const { getSystemErrorMap } = require('util');
 const puzzleInput = 'input/day1.txt';
 
 //creates interface to read puzzleinput line for line
@@ -33,7 +32,6 @@ myInterface.on('close', function() {
         var max = Math.max(...elves); 
         topThree += max;
         elves.splice(elves.indexOf(max), 1);
-        console.log(i);
     }
     console.log("Total of top three elves is " + topThree);
 });

@@ -1,6 +1,5 @@
 const fs = require('fs');
 const readline = require('readline');
-const { getSystemErrorMap } = require('util');
 const puzzleInput = 'input/day1.txt';
 
 //creates interface to read puzzleinput line for line
