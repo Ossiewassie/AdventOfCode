@@ -1,6 +1,6 @@
 const fs = require('fs');
 const readline = require('readline');
-const puzzleInput = 'input/day5example.txt';
+const puzzleInput = 'input/day5.txt';
 
 //creates interface to read puzzleinput line for line
 let myInterface = readline.createInterface({
@@ -10,10 +10,17 @@ let myInterface = readline.createInterface({
 
 let supplies = [];
 let suppliesScanned = false;
+
+let amount;
+let from;
+let to;
+let chunk;
+let reversechunk;
+
 //tells the code what to do with each line  
 myInterface.on('line', function (line) {
   const chars = line.split('');
-  const supplyXCoords = [1,5,9/*,13,17,21,25,29,33*/];
+  const supplyXCoords = [1,5,9,13,17,21,25,29,33];
 
   // I'll write the code to scan the supplies within this if
   if(!suppliesScanned) {
@@ -35,22 +42,23 @@ myInterface.on('line', function (line) {
     }
   }
   //✅ works
-  
-  let amount;
-  let from;
-  let to;
-  let chunk;
-  let reversechunk;
 
   if(suppliesScanned && chars[0] === 'm') {
     amount = line.split(' ')[1];
-    from = line.split(' ')[3];
-    to = line.split(' ')[5];
+
+    //array start at 0 so the 1st will be 0, 2nd 1 etc
+    from = (line.split(' ')[3] - 1);
+    to = (line.split(' ')[5] - 1);
 
     chunk = supplies[from].substring(0, amount);
-    reversechunk = chunk.split('').reverse().join("");
+    // reversechunk = chunk.split('').reverse().join(""); part 1
+    
+    //part 2: 
+    reversechunk = chunk.split('').join("");
+
     supplies[from] = supplies[from].slice(amount);
-    supplies[to - 1] += reversechunk;
+    supplies[to] = reversechunk + supplies[to];
+    // console.log(supplies);
   }
 
 }); 
