@@ -8,21 +8,18 @@ let myInterface = readline.createInterface({
 });
 
 let sum = 0;
-let writtenNrs = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine']
 
 myInterface.on('line', function (line) {
     chars = line.split('');
     number1 = "";
     number2 = "";
 
-    (chars).forEach(function(char, i) {
+    (chars).forEach(char => {
         if(char >= 0 && char <= 9 && number1 == ""){
             number1 = char;
-            number1pos = i;
         }
         else if(char >= 0 && char <= 9) {
             number2 = char;
-            number2pos = i;
         }
     });
 
